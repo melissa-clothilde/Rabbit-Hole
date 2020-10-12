@@ -1,31 +1,40 @@
 <body>
-    <div class="container">
-        <div class="jumbotron main">
-            <div class="container"></div>
-            <div class="row mainimg">
-                <div class="col-lg-12">
-                    <img class="img-fluid" src="/assets/Brush Script Facebook Cover.png">
-                </div>
-            </div>
-            <p class="lead bodytext"></p>
-            <hr class="my-4 bodytext">
-            <p class="bodytext">To get started, select either artist or track title</p>
-            <div class="InputAddOn">
-                <span class="InputAddOn-item">
-                    <select class="custom-select select-shape mr-sm-2" id="inlineFormCustomSelect">
-                        <option value="1" id="selectArtist">Artist</i></option>
-                        <option value="2" id="selectTrack">Track</option>
-                    </select>
-                </span>
-                <p class="bodytext">Then search for any artist or a track title</p>
-                <div class="">
-                    <input type="text" class="form-control" id="searchInput" placeholder="enter artist or track"
-                        aria-label="Username" aria-describedby="addon-wrapping">
-                </div>
-            </div>
-            <button class="btn btn-secondary btn-lg bodytext" href="#" id="mainSearch" role="button"
-                style="margin-top: 20px;">Go Down the Rabbit Hole!</button>
+    <div class="jumbotron main">
+        <div class="row mainimg">
+            <img class="img-fluid main-img"
+                src="/assets/Brush Script Facebook Cover.png">
+            </img>
         </div>
+        <div class="bodytext container">
+            <p>To get started, select either artist
+                or track title. Then search for any artist or a track title
+            </p>
+        </div>
+
+    </div>
+    <div class="container">
+        <p class="lead bodytext"></p>
+        <hr class="my-4 bodytext">
+
+        <div class="InputAddOn">
+            <span class="InputAddOn-item">
+                <select class="custom-select select-shape mr-sm-2"
+                    id="inlineFormCustomSelect">
+                    <option value="1" id="selectArtist">Artist</i></option>
+                    <option value="2" id="selectTrack">Track</option>
+                </select>
+            </span>
+
+            <div class="">
+                <input type="text" class="form-control" id="searchInput"
+                    placeholder="enter artist or track" aria-label="Username"
+                    aria-describedby="addon-wrapping">
+            </div>
+        </div>
+        <button class="btn btn-secondary btn-lg bodytext" href="#"
+            id="mainSearch" role="button" style="margin-top: 20px;">Go Down
+            the Rabbit Hole!</button>
+    </div>
     </div>
 
     <!-- Dynamically populate results  -->
@@ -42,7 +51,8 @@
                     <div class="card text-center hide-me hide-card d-none">
                         <div class="card-body" id="topFive">
                             <h5 class="card-title" id="topTitle"></h5>
-                            <ul class="list-group list-group-flush" id="searchedResults">
+                            <ul class="list-group list-group-flush"
+                                id="searchedResults">
                             </ul>
                         </div>
                     </div>
@@ -59,7 +69,8 @@
                     <div class="card text-center hide-me hide-card d-none">
                         <div class="card-body">
                             <h5 class="card-title" id="relatedTitle"></h5>
-                            <ul class="list-group list-group-flush" id="artistNames">
+                            <ul class="list-group list-group-flush"
+                                id="artistNames">
                             </ul>
                         </div>
                     </div>

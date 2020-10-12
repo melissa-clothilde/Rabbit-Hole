@@ -3,6 +3,7 @@
 ## About
 
 A an app that encourages users to "go down the rabbit hole" by searching for artists and tracks while finding related artists and books. Using the Spotify and Google Books APIs, the user is can use this app to easily keep track of which artists and genres they are learning more about by saving books to get back to later.
+npm start
 
 ## Role
 
@@ -11,5 +12,3 @@ My backend role in this project included creating the database using Sequelize, 
 ## Deployment
 
 https://discover-rabbit-hole.herokuapp.com/
-
-

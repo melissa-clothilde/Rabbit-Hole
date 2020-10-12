@@ -6,16 +6,25 @@
 }
 
 #navbarDropdown {
-    color: thistle;
+  color: thistle;
+}
+
+.main-img {
+  width: 100%;
 }
 
 .likesjumb {
-    background-color: white;
-    text-align: center;
+  background-color: white;
+  text-align: center;
 }
 
 .navbartext {
-    color: thistle;
+  color: thistle;
+}
+
+.navbar-brand {
+  font-family: 'Staatliches', cursive;
+  font-size: 25px;
 }
 
 .mainimg {
@@ -23,7 +32,11 @@
 }
 
 .bodytext {
+  position: relative;
   color: thistle;
+  bottom: 50px;
+  font-size: 20px;
+  text-align: left;
 }
 
 #mainSearch {
@@ -38,7 +51,8 @@
 .badge-info {
   margin-left: 3px;
 }
-.badge-warning, .badge-success {
+.badge-warning,
+.badge-success {
   margin-left: 5px;
 }
 
@@ -49,7 +63,7 @@
   position: relative;
 }
 
-.thistle-color{
+.thistle-color {
   color: thistle;
 }
 
@@ -57,7 +71,7 @@
   position: relative;
 }
 
-.nav-size{
+.nav-size {
   font-size: 25px;
 }
 
