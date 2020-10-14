@@ -5,7 +5,7 @@
                 src="/assets/Brush Script Facebook Cover.png">
             </img>
         </div>
-        <div class="bodytext container">
+        <div class="bodytext directions container">
             <p>To get started, select either artist
                 or track title. Then search for any artist or a track title
             </p>
@@ -13,28 +13,25 @@
 
     </div>
     <div class="container">
-        <p class="lead bodytext"></p>
-        <hr class="my-4 bodytext">
-
-        <div class="InputAddOn">
-            <span class="InputAddOn-item">
-                <select class="custom-select select-shape mr-sm-2"
+        <div class="input-group mb-3">
+            <div class="input-group-prepend enter-fields">
+                <select class="custom-select drop-down select-shape mr-sm-2"
                     id="inlineFormCustomSelect">
                     <option value="1" id="selectArtist">Artist</i></option>
                     <option value="2" id="selectTrack">Track</option>
                 </select>
-            </span>
 
-            <div class="">
                 <input type="text" class="form-control" id="searchInput"
-                    placeholder="enter artist or track" aria-label="Username"
+                    placeholder="Enter an artist or track"
+                    aria-label="Text input with dropdown button"
                     aria-describedby="addon-wrapping">
+
             </div>
         </div>
-        <button class="btn btn-secondary btn-lg bodytext" href="#"
-            id="mainSearch" role="button" style="margin-top: 20px;">Go Down
-            the Rabbit Hole!</button>
-    </div>
+        <button class="btn btn-lg bodytext" href="#" id="mainSearch"
+            role="button" style="margin-top: 20px;">Go Down
+            the Rabbit Hole!
+        </button>
     </div>
 
     <!-- Dynamically populate results  -->

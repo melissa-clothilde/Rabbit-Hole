@@ -1,7 +1,7 @@
 .main {
   margin: 0px;
   padding: 0px;
-  background-color: #35363a;
+  background-color: #212221;
   text-align: center;
 }
 
@@ -11,6 +11,14 @@
 
 .main-img {
   width: 100%;
+  max-height: 400px;
+  filter: hue-rotate(60deg);
+  filter: contrast(125%) brightness(100%);
+}
+
+.directions {
+  color: white;
+  text-align: center;
 }
 
 .likesjumb {
@@ -18,8 +26,25 @@
   text-align: center;
 }
 
+.drop-down {
+  background-color: rgb(248, 230, 248);
+  color: #212221;
+}
 .navbartext {
   color: thistle;
+}
+
+.form-control {
+  width: 500px;
+}
+
+#searchInput {
+  background-color: rgb(248, 230, 248);
+  color: #212221;
+}
+
+.enter-fields {
+  margin: auto;
 }
 
 .navbar-brand {
@@ -27,21 +52,22 @@
   font-size: 25px;
 }
 
-.mainimg {
-  text-align: center;
-}
-
 .bodytext {
   position: relative;
-  color: thistle;
+  color: rgb(248, 230, 248);
   bottom: 50px;
   font-size: 20px;
   text-align: left;
 }
 
 #mainSearch {
-  margin-top: 20px;
+  position: relative;
+  top: 1px;
+  background: rgb(59, 50, 59);
   margin-bottom: 20px;
+  color: rgb(248, 230, 248);
+  border: 1px rgb(248, 230, 248);
+  border-style: ridge;
 }
 
 .login {
