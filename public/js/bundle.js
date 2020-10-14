@@ -55559,8 +55559,13 @@ $(() => {
              if (!data.items) {
                   const noBooksDiv = $("<div>");
                 noBooksDiv.addClass("no-books-found-div");
-                noBooksDiv.text("No books found...");
+                noBooksDiv.text("No books f
+                ound...");
                 }
+             if (searchBtn.value === "") {
+                $("#relatedBooklist").empty();
+                
+             }
                 //add title and author contents to html book list from json
                 $("#books-header").text("Discover Books");
                 $("#books-p").text("Here are books related to the artist.");
@@ -55635,6 +55640,10 @@ $(() => {
           noBooksDiv.addClass("no-books-found-div");
           noBooksDiv.text("No books found...");
         }
+         if (searchBtn.value === "") {
+                $("#relatedBooklist").empty();
+              
+             }
         //add title and author contents to html book list from json
         $("#books-header").text("Discover Books");
         $("#books-p").text("Here are books related to the artist.");
