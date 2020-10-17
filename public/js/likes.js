@@ -8,7 +8,6 @@ $(document).ready(function () {
   getBooks();
   // This function grabs all artists from the database and renders to page
   function getArtists() {
-    console.log("hello artist");
     $.get("/api/artists", function (data) {
       artists = data;
       artistContainer.empty();
@@ -40,18 +39,15 @@ $(document).ready(function () {
   artistContainer.on("click", $(".deleteArtist"), function (event) {
     event.stopPropagation();
     const id = event.target.getAttribute("data-artistId");
-    console.log("id", id);
     $.ajax({
       url: "/api/artists/" + id,
       type: "DELETE",
       success: function () {
-        console.log("success!!!");
       }
     }).then(getArtists);
   });
   //////////////////////////////////////////////////////////////Tracks
   function getTracks() {
-    console.log("hello track");
     $.get("/api/tracks", function (data) {
       tracks = data;
       trackContainer.empty();
@@ -87,18 +83,15 @@ $(document).ready(function () {
   trackContainer.on("click", $(".deleteTrack"), function (event) {
     event.stopPropagation();
     const id = event.target.getAttribute("data-trackid");
-    console.log("id", id);//gets id
     $.ajax({
       url: "/api/tracks/" + id,
       type: "DELETE",
       success: function () {
-        console.log("success!!!");
       }
     }).then(getTracks);
   });
   /////////////////////////////////////////////////////////////////////Books
   function getBooks() {
-    console.log("hello book");
     $.get("/api/books", function (data) {
       books = data;
       bookContainer.empty();
@@ -115,7 +108,6 @@ $(document).ready(function () {
           link.attr("href", "https://books.google.com/books?id=" + books[i].title);
           link.attr("target", "_blank");
           link.text(books[i].title);
-          console.log(books);
           const bookDeleteBtn = $("<button>");
           bookDeleteBtn.addClass("badge badge-info deleteBook");
           bookDeleteBtn.attr("data-bookId", books[i].id);
@@ -131,12 +123,10 @@ $(document).ready(function () {
   bookContainer.on("click", $(".deleteBook"), function (event) {
     event.stopPropagation();
     const id = event.target.getAttribute("data-bookId");
-    console.log("id", id);
     $.ajax({
       url: "/api/books/" + id,
       type: "DELETE",
       success: function () {
-        console.log("success!!!");
       }
     }).then(getBooks);
   });

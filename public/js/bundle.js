@@ -64344,8 +64344,6 @@ empty list will be returned. A validation error will have two properties:
           const submitBtn = $('#mainSearch');
           const bookPreviewBtn = $('book-preview-button');
           const main = $('#resultsMain');
-          //main.append(resultsDiv);
-
           submitBtn.on('click', (event) => {
             event.preventDefault();
             main.empty();
@@ -64469,15 +64467,14 @@ empty list will be returned. A validation error will have two properties:
                   }
                 })
                 .catch((err) => {
-                  if (err) {
-                    throw err;
-                  }
+                  if (err) throw err;
+                  
                 });
-            } else if (queryType === '2') {
+            }
+            else if (queryType === '2') {
               spotify
                 .search({ type: 'track', query: queryName, limit: 5 })
                 .then((response) => {
-                  // $(".hide-me").addClass("d-none");
                   const songsDiv = $('<div>');
                   for (let i = 0; i < response.tracks.items.length; i++) {
                     let title = $('<p>').text(
@@ -64491,59 +64488,44 @@ empty list will be returned. A validation error will have two properties:
                     );
                     songsDiv.append(title, artist, album);
 
-                    const artistBook = response.tracks.items[i].artists[0].name;
-                    $('#relatedBooklist').empty();
-                    $.ajax({
-                      url:
-                        'https://www.googleapis.com/books/v1/volumes?q=' +
-                        '"' +
-                        artistBook +
-                        '"&maxResults=5',
-                      dataType: 'json',
-                      success: (data) => {
-                        if (searchBtn.value === '') {
-                          $('#relatedBooklist').empty();
-                        }
-                        //add title and author contents to html book list from json
-                        $('#books-header').text('Discover Books');
-                        $('#books-p').text(
-                          'Here are books related to the artist.'
-                        );
-                        for (let i = 0; i < data.items.length; i++) {
-                          const listItem = $('<li>');
-                          listItem.addClass(
-                            'list-group-item list-group-item-action'
-                          );
-                          listItem.addClass('book-item');
-                          listItem.text(
-                            data.items[i].volumeInfo.title +
-                              ' by ' +
-                              data.items[i].volumeInfo.authors[0]
-                          );
-                          const bookPreviewBtn = $('<a>');
-                          bookPreviewBtn.addClass('badge badge-warning');
-                          bookPreviewBtn.attr(
-                            'href',
-                            'https://books.google.com/books?id=' +
-                              data.items[i].id
-                          );
-                          bookPreviewBtn.attr('target', '_blank');
-                          bookPreviewBtn.text('See Book');
-                          listItem.append(bookPreviewBtn);
-                          const likeBookBtn = $('<button>');
-                          likeBookBtn.addClass('badge badge-info book-like');
-                          likeBookBtn.text('Like');
-                          likeBookBtn.attr(
-                            'data-title',
-                            data.items[i].volumeInfo.title
-                          );
-                          listItem.append(likeBookBtn);
-                          $('#relatedBooklist').append(listItem);
-                        }
-                      },
-                      type: 'GET',
-                    });
-                  }
+                    const trackBook = response.tracks.items[i].artists[0].name;
+                    console.log("trackBook",trackBook)
+            $("#relatedBooklist").empty();
+            $.ajax({
+             url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + trackBook + '"&maxResults=5',
+             dataType: "json",
+            success: data => {
+             if (!data.items) {
+                  const noBooksDiv = $("<div>");
+                noBooksDiv.addClass("no-books-found-div");
+                noBooksDiv.text("No books found...");
+                }
+                //add title and author contents to html book list from json
+                $("#books-header").text("Discover Books");
+                $("#books-p").text("Here are books related to the artist.");
+                for (let i = 0; i < data.items.length; i++) {
+                console.log("data.item", data.items);
+                const listItem = $("<li>");
+                listItem.addClass("list-group-item list-group-item-action");
+                listItem.addClass("book-item");
+                listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
+                const bookPreviewBtn = $("<a>");
+                bookPreviewBtn.addClass("badge badge-warning");
+                bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
+                bookPreviewBtn.attr("target", "_blank");
+                bookPreviewBtn.text("See Book");
+                listItem.append(bookPreviewBtn);
+                const likeBookBtn = $("<button>");
+                likeBookBtn.addClass("badge badge-info book-like");
+                likeBookBtn.text("Like");
+                likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
+                listItem.append(likeBookBtn);
+                $("#relatedBooklist").append(listItem);
+        }
+      },
+      type: "GET"
+    });
+          }
                   $(resultsDiv).append(songsDiv);
                 });
             }
@@ -64591,61 +64573,44 @@ empty list will be returned. A validation error will have two properties:
           });
 
           const renderArtistBooks = () => {
-            $('#relatedBooklist').empty();
-            const searchTerm = search.val();
-            console.log(
-              'https://www.googleapis.com/books/v1/volumes?q=' +
-                '"' +
-                searchTerm +
-                '"'
-            );
-            $.ajax({
-              url:
-                'https://www.googleapis.com/books/v1/volumes?q=' +
-                '"' +
-                searchTerm +
-                '"',
-              dataType: 'json',
-              success: (data) => {
-                console.log(data);
-                if (searchBtn.value === '') {
-                  $('#relatedBooklist').empty();
-                }
-                //add title and author contents to html book list from json
-                $('#books-header').text('Discover Books');
-                $('#books-p').text('Here are books related to the artist.');
-                for (let i = 0; i < data.items.length; i++) {
-                  const listItem = $('<li>');
-                  listItem.addClass('list-group-item list-group-item-action');
-                  listItem.addClass('book-item');
-                  listItem.text(
-                    data.items[i].volumeInfo.title +
-                      ' by ' +
-                      data.items[i].volumeInfo.authors[0]
-                  );
-                  const bookPreviewBtn = $('<a>');
-                  bookPreviewBtn.addClass('badge badge-warning');
-                  bookPreviewBtn.attr(
-                    'href',
-                    'https://books.google.com/books?id=' + data.items[i].id
-                  );
-                  bookPreviewBtn.attr('target', '_blank');
-                  bookPreviewBtn.text('See Book');
-                  listItem.append(bookPreviewBtn);
-                  const likeBookBtn = $('<button>');
-                  likeBookBtn.addClass('badge badge-info book-like');
-                  likeBookBtn.text('Like');
-                  likeBookBtn.attr(
-                    'data-title',
-                    data.items[i].volumeInfo.title
-                  );
-                  listItem.append(likeBookBtn);
-                  $('#relatedBooklist').append(listItem);
-                }
-              },
-              type: 'GET',
-            });
-          };
+    $("#relatedBooklist").empty();
+    const searchTerm = search.val();
+    console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"',
+      dataType: "json",
+      success: data => {
+        console.log(data);
+        if (!data.items) {
+          const noBooksDiv = $("<div>");
+          noBooksDiv.addClass("no-books-found-div");
+          noBooksDiv.text("No books found...");
+        }
+        //add title and author contents to html book list from json
+        $("#books-header").text("Discover Books");
+        $("#books-p").text("Here are books related to the artist.");
+        for (let i = 0; i < data.items.length; i++) {
+          const listItem = $("<li>");
+          listItem.addClass("list-group-item list-group-item-action");
+          listItem.addClass("book-item");
+          listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
+          const bookPreviewBtn = $("<a>");
+          bookPreviewBtn.addClass("badge badge-warning");
+          bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
+          bookPreviewBtn.attr("target", "_blank");
+          bookPreviewBtn.text("See Book");
+          listItem.append(bookPreviewBtn);
+          const likeBookBtn = $("<button>");
+          likeBookBtn.addClass("badge badge-info book-like");
+          likeBookBtn.text("Like");
+          likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
+          listItem.append(likeBookBtn);
+          $("#relatedBooklist").append(listItem);
+        }
+      },
+      type: "GET"
+    });
+    };
         });
       },
       { 'node-spotify-api': 116 },

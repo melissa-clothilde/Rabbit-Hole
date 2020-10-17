@@ -54,7 +54,7 @@
 
 .book-div {
   padding-right: 0;
-    padding-top: 0;
+  padding-top: 0;
 
 }
 
@@ -93,6 +93,11 @@ h5 {
 .badge-warning,
 .badge-success {
   margin-left: 5px;
+}
+
+.book-body {
+  margin: 0;
+  padding: 0;
 }
 
 .bunny {
