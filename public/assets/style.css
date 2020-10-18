@@ -100,6 +100,15 @@ h5 {
   padding: 0;
 }
 
+.tracks-list-group {
+  margin-bottom: 30px;
+}
+
+.list-group-item.active {
+  background-color: rgb(59, 50, 59);
+  border-color: rgb(248, 230, 248);
+}
+
 .bunny {
   width: 50px;
   height: 50px;

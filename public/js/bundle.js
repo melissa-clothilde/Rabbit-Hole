@@ -64385,14 +64385,15 @@ empty list will be returned. A validation error will have two properties:
                           `https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`
                         )
                         .then((res) => {
-                          $('.hide-card').removeClass('d-none');
+                          $('#topFive').removeClass('d-none');
+                          $('.relatedFive').removeClass('d-none');
                           const topFiveEl = $('#searchedResults');
                           topFiveEl.empty();
                           $('#topTitle').text('Top Five Tracks');
                           for (let k = 0; k < 5; k++) {
                             let title = $('<li>');
                             const playBtn = $('<button>');
-                            title.text(`Title: ${res.tracks[k].name}`);
+                            title.text(`Track: ${res.tracks[k].name}`);
                             title.addClass('list-group-item');
                             likeBtn = $('<button>');
                             likeBtn.text('Like');
@@ -64477,54 +64478,75 @@ empty list will be returned. A validation error will have two properties:
                 .then((response) => {
                   const songsDiv = $('<div>');
                   for (let i = 0; i < response.tracks.items.length; i++) {
-                    let title = $('<p>').text(
-                      `Title: ${response.tracks.items[i].name}`
+                    const itemDiv = $('<ul>').addClass("tracks-list-group list-group");
+                    let title = $('<li>').addClass("list-group-item active").text(
+                      `Track: ${response.tracks.items[i].name}`
                     );
-                    let artist = $('<p>').text(
+                    likeBtn = $('<button>');
+                    likeBtn.text('Like');
+                    likeBtn.addClass('badge badge-info like-btn');
+                    likeBtn.attr('data-trackId', response.tracks.items[i].id);
+                    likeBtn.attr('data-name', response.tracks.items[i].title);
+                    console.log("track page track id", response.tracks.items[i].id);
+                    const json = JSON.parse(response.tracks.items[i].volumeInfo[title])
+                    console.log("json", JSON.parse(response.tracks.items[i].volumeInfo[title]) )
+                    // console.log("track page track name", response.tracks.items[i].volumeInfo[title]);
+                    
+                    const playBtn = $('<button>');
+                    playBtn.addClass('badge badge-success');
+                    playBtn.text('Play');
+                    title.append(playBtn);
+                    title.append(likeBtn);
+                    let artist = $('<li>').addClass("list-group-item").text(
                       `Artist: ${response.tracks.items[i].artists[0].name}`
                     );
-                    let album = $('<p>').text(
+                    let album = $('<li>').addClass("list-group-item").text(
                       `Album: ${response.tracks.items[i].album.name}`
                     );
-                    songsDiv.append(title, artist, album);
+                    itemDiv.append(title, artist, album);
+                    songsDiv.append(itemDiv);
+
 
                     const trackBook = response.tracks.items[i].artists[0].name;
                     console.log("trackBook",trackBook)
-            $("#relatedBooklist").empty();
-            $.ajax({
-             url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + trackBook + '"&maxResults=5',
-             dataType: "json",
-            success: data => {
-             if (!data.items) {
-                  const noBooksDiv = $("<div>");
-                noBooksDiv.addClass("no-books-found-div");
-                noBooksDiv.text("No books found...");
+                    $("#relatedBooklist").empty();
+                    $.ajax({
+                     url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + trackBook + '"&maxResults=5',
+                     dataType: "json",
+                    success: data => {
+                     if (!data.items) {
+                          const noBooksDiv = $("<div>");
+                        noBooksDiv.addClass("no-books-found-div");
+                        noBooksDiv.text("No books found...");
+                        }
+                        $('#topFive').addClass('d-none');
+                        $('.relatedFive').addClass('d-none');
+                        $('.hide-card').removeClass('d-none');
+                        //add title and author contents to html book list from json
+                        $("#books-header").text("Discover Books");
+                        $("#books-p").text("Here are books related to the artist.");
+                        for (let i = 0; i < data.items.length; i++) {
+                        console.log("data.item", data.items);
+                        const listItem = $("<li>");
+                        listItem.addClass("list-group-item list-group-item-action");
+                        listItem.addClass("book-item");
+                        listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
+                        const bookPreviewBtn = $("<a>");
+                        bookPreviewBtn.addClass("badge badge-warning");
+                        bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
+                        bookPreviewBtn.attr("target", "_blank");
+                        bookPreviewBtn.text("See Book");
+                        listItem.append(bookPreviewBtn);
+                        const likeBookBtn = $("<button>");
+                        likeBookBtn.addClass("badge badge-info book-like");
+                        likeBookBtn.text("Like");
+                        likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
+                        listItem.append(likeBookBtn);
+                        $("#relatedBooklist").append(listItem);
                 }
-                //add title and author contents to html book list from json
-                $("#books-header").text("Discover Books");
-                $("#books-p").text("Here are books related to the artist.");
-                for (let i = 0; i < data.items.length; i++) {
-                console.log("data.item", data.items);
-                const listItem = $("<li>");
-                listItem.addClass("list-group-item list-group-item-action");
-                listItem.addClass("book-item");
-                listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
-                const bookPreviewBtn = $("<a>");
-                bookPreviewBtn.addClass("badge badge-warning");
-                bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
-                bookPreviewBtn.attr("target", "_blank");
-                bookPreviewBtn.text("See Book");
-                listItem.append(bookPreviewBtn);
-                const likeBookBtn = $("<button>");
-                likeBookBtn.addClass("badge badge-info book-like");
-                likeBookBtn.text("Like");
-                likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
-                listItem.append(likeBookBtn);
-                $("#relatedBooklist").append(listItem);
-        }
-      },
-      type: "GET"
-    });
+              },
+              type: "GET"
+            });
           }
                   $(resultsDiv).append(songsDiv);
                 });
@@ -64534,6 +64556,18 @@ empty list will be returned. A validation error will have two properties:
           $('#searchedResults').on('click', '.like-btn', function() {
             $(this).text('Liked!');
             console.log($(this).data('trackid'));
+            $.post(
+              '/api/tracks',
+              { id: $(this).data('trackid'), name: $(this).data('name') },
+              (track) => {
+                console.log('success');
+              }
+            );
+          });
+          
+          $('#resultsMain').on('click', '.like-btn', function() {
+            $(this).text('Liked!');
+            console.log("trackid!!!!!!!", $(this).data('trackid'));
             $.post(
               '/api/tracks',
               { id: $(this).data('trackid'), name: $(this).data('name') },
