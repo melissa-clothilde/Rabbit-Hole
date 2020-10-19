@@ -64363,7 +64363,7 @@ empty list will be returned. A validation error will have two properties:
                   // show user all artisit based on serach. user can then click which artist they want
                   for (let i = 0; i < response.artists.items.length; i++) {
                     let artistName = $('<li>').text(
-                      `Artist Name: ${response.artists.items[i].name}`
+                      `${response.artists.items[i].name}`
                     );
                     artistName.addClass("btn list-group-item");
                     artistName.attr('id', i);
@@ -64393,7 +64393,7 @@ empty list will be returned. A validation error will have two properties:
                           for (let k = 0; k < 5; k++) {
                             let title = $('<li>');
                             const playBtn = $('<button>');
-                            title.text(`Track: ${res.tracks[k].name}`);
+                            title.text(`${res.tracks[k].name}`);
                             title.addClass('list-group-item');
                             likeBtn = $('<button>');
                             likeBtn.text('Like');
@@ -64432,7 +64432,7 @@ empty list will be returned. A validation error will have two properties:
                               'data-related',
                               res.artists[j].name
                             );
-                            name.text(`Artist Name: ${res.artists[j].name}`);
+                            name.text(`${res.artists[j].name}`);
                             name.append(likeRelated);
                             name.addClass('list-group-item');
                             relatedArtists.append(name);
@@ -64453,7 +64453,7 @@ empty list will be returned. A validation error will have two properties:
                           likeArtist.addClass('badge badge-info like-artist');
                           likeArtist.attr('data-artist', res.name);
                           artistName.text(res.name);
-                          artistName.append(likeArtist);
+                          artistPic.append(likeArtist);
                           artistPic.attr('src', res.images[0].url);
                           artistPic.attr(
                             'style',
@@ -64480,18 +64480,15 @@ empty list will be returned. A validation error will have two properties:
                   for (let i = 0; i < response.tracks.items.length; i++) {
                     const itemDiv = $('<ul>').addClass("tracks-list-group list-group");
                     let title = $('<li>').addClass("list-group-item active").text(
-                      `Track: ${response.tracks.items[i].name}`
+                      `${response.tracks.items[i].name}`
                     );
                     likeBtn = $('<button>');
                     likeBtn.text('Like');
                     likeBtn.addClass('badge badge-info like-btn');
                     likeBtn.attr('data-trackId', response.tracks.items[i].id);
-                    likeBtn.attr('data-name', response.tracks.items[i].title);
-                    console.log("track page track id", response.tracks.items[i].id);
-                    const json = JSON.parse(response.tracks.items[i].volumeInfo[title])
-                    console.log("json", JSON.parse(response.tracks.items[i].volumeInfo[title]) )
-                    // console.log("track page track name", response.tracks.items[i].volumeInfo[title]);
-                    
+                    // likeBtn.attr('data-name', response.tracks.items[i].volumeInfo);
+                    // console.log("track page track id", response.tracks.items[i].id);
+                    // console.log("track page track name", response.tracks.items[i].volumeInfo.title);
                     const playBtn = $('<button>');
                     playBtn.addClass('badge badge-success');
                     playBtn.text('Play');

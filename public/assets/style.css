@@ -5,9 +5,14 @@
   text-align: center;
 }
 
-#navbarDropdown {
-  color: thistle;
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='thistle' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
+
+.custom-toggler.navbar-toggler {
+  border-color: thistle;
+} 
 
 .main-img {
   width: 100%;
@@ -26,11 +31,8 @@
   text-align: center;
 }
 
-.drop-down {
-  background-color:  #fff;
-  color: #212221;
-}
-.navbartext {
+
+.navbartext .text-right .nav-item .navbar {
   color: thistle;
 }
 
@@ -62,7 +64,7 @@
   position: relative;
   color: rgb(248, 230, 248);
   bottom: 50px;
-  font-size: 20px;
+  font-size: 17px;
   text-align: left;
 }
 
@@ -77,6 +79,7 @@ h5 {
   color: rgb(248, 230, 248);
   border: 1px rgb(248, 230, 248);
   border-style: ridge;
+  margin-top: 15px;
 }
 
 .login {
@@ -85,6 +88,8 @@ h5 {
 
 #resultsMain {
   margin-top: 25px;
+  background-color: #212221;
+
 }
 
 .badge-info {
@@ -131,3 +136,18 @@ h5 {
 .login-left {
   float: left;
 }
+
+.my-likes-title {
+  color: #fff;
+  font-family: 'Staatliches', cursive;
+  font-size: 30px;
+}
+
+.display-4 {
+  font-size: 23px;
+  color: #fff;
+}
+
+h2 {
+  font-family: 'Staatliches', cursive;
+ color: #fff;}
