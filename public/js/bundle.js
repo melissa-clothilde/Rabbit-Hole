@@ -64392,7 +64392,7 @@ empty list will be returned. A validation error will have two properties:
                           $('#topTitle').text('Top Five Tracks');
                           for (let k = 0; k < 5; k++) {
                             let title = $('<li>');
-                            const playBtn = $('<button>');
+                            const playBtn = $('<a>');
                             title.text(`${res.tracks[k].name}`);
                             title.addClass('list-group-item');
                             likeBtn = $('<button>');
@@ -64402,6 +64402,9 @@ empty list will be returned. A validation error will have two properties:
                             likeBtn.attr('data-name', res.tracks[k].name);
                             playBtn.addClass('badge badge-success');
                             playBtn.text('Play');
+                            playBtn.attr("href", "http://www.youtube.com/results?search_query=" + res.tracks[k].name);
+                            playBtn.attr("target", "_blank");
+                            bookPreviewBtn.text("See Book");
                             title.append(playBtn);
                             title.append(likeBtn);
                             topFiveEl.append(title);

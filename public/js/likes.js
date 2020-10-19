@@ -65,9 +65,11 @@ $(document).ready(function () {
           trackDeleteBtn.addClass("badge badge-info deleteTrack");
           trackDeleteBtn.attr("data-trackId", tracks[i].id);
           trackDeleteBtn.text("remove");
-          const playBtn = $("<button>");
+          const playBtn = $("<a>");
           playBtn.addClass("badge badge-success");
           playBtn.text("Play");
+          playBtn.attr("href", "http://www.youtube.com/results?search_query=" + tracks[i].name);
+          playBtn.attr("target", "_blank");
           row.append(playBtn);
           row.append(trackDeleteBtn);
           trackContainer.prepend(row);
