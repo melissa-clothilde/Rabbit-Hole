@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.navbar {
+    background-color: #212221;
+}
+
+.nav-link, .nav-link:hover, .navbar-brand, .navbar-brand:hover {
+  color: thistle;
+}
 
 .custom-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='thistle' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -17,8 +24,8 @@
 .main-img {
   width: 100%;
   max-height: 400px;
-  filter: hue-rotate(60deg);
-  filter: contrast(125%) brightness(100%);
+  filter: hue-rotate(80deg);
+  filter: contrast(145%) brightness(100%);
 }
 
 .directions {
@@ -26,14 +33,9 @@
   text-align: center;
 }
 
-.likesjumb {
-  background-color: white;
-  text-align: center;
-}
-
-
-.navbartext .text-right .nav-item .navbar {
-  color: thistle;
+.likes-div {
+    margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .form-control {
@@ -75,11 +77,16 @@ h5 {
 #mainSearch {
   position: relative;
   top: 1px;
-  background: rgb(59, 50, 59);
-  color: rgb(248, 230, 248);
-  border: 1px rgb(248, 230, 248);
-  border-style: ridge;
+  background: rgb(245, 235, 245);
+  color: rgb(59, 50, 59);
+  border: solid 5px rgb(59, 50, 59);
+  border-radius: 12px;
   margin-top: 15px;
+  font-size: 16px;
+}
+
+.none-liked-text {
+  color: #fff;
 }
 
 .login {
@@ -138,14 +145,23 @@ h5 {
 }
 
 .my-likes-title {
-  color: #fff;
+  color: rgb(245, 235, 245);
   font-family: 'Staatliches', cursive;
-  font-size: 30px;
+  font-size: 50px;
+  margin-top: 70px;
 }
 
-.display-4 {
-  font-size: 23px;
-  color: #fff;
+.likes-sub-headings {
+  color: thistle;
+  font-size: 25px;
+}
+
+.likes-book-link {
+  color: #212529;
+}
+
+.likes-book-link:hover {
+  color: rgb(59, 50, 59);
 }
 
 h2 {

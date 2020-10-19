@@ -64453,7 +64453,7 @@ empty list will be returned. A validation error will have two properties:
                           likeArtist.addClass('badge badge-info like-artist');
                           likeArtist.attr('data-artist', res.name);
                           artistName.text(res.name);
-                          artistPic.append(likeArtist);
+                          artistName.append(likeArtist);
                           artistPic.attr('src', res.images[0].url);
                           artistPic.attr(
                             'style',
@@ -64486,9 +64486,9 @@ empty list will be returned. A validation error will have two properties:
                     likeBtn.text('Like');
                     likeBtn.addClass('badge badge-info like-btn');
                     likeBtn.attr('data-trackId', response.tracks.items[i].id);
-                    // likeBtn.attr('data-name', response.tracks.items[i].volumeInfo);
-                    // console.log("track page track id", response.tracks.items[i].id);
-                    // console.log("track page track name", response.tracks.items[i].volumeInfo.title);
+                    likeBtn.attr('data-name', response.tracks.items[i].name);
+                    console.log("track page track id", response.tracks.items[i].id);
+                    console.log("track page track name", response.tracks.items[i].name);
                     const playBtn = $('<button>');
                     playBtn.addClass('badge badge-success');
                     playBtn.text('Play');

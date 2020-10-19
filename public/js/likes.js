@@ -12,7 +12,7 @@ $(document).ready(function () {
       artists = data;
       artistContainer.empty();
       if (artists.length === 0) {
-        const noArtistsMessage = $("<p>");
+        const noArtistsMessage = $("<p>").addClass('none-liked-text');
         noArtistsMessage.text("No liked artists yet...");
         artistContainer.append(noArtistsMessage);
       }
@@ -52,7 +52,7 @@ $(document).ready(function () {
       tracks = data;
       trackContainer.empty();
       if (tracks.length === 0) {
-        const noTracksMessage = $("<p>");
+        const noTracksMessage = $("<p>").addClass('none-liked-text');
         noTracksMessage.text("No liked tracks yet...");
         trackContainer.append(noTracksMessage);
       }
@@ -97,13 +97,13 @@ $(document).ready(function () {
       bookContainer.empty();
       if (books.length === 0) {
         const noBooksMessage = $("<p>");
-        noBooksMessage.text("No liked books yet...");
+        noBooksMessage.text("No liked books yet...").addClass('none-liked-text');
         bookContainer.append(noBooksMessage);
       }
       if (books.length !== 0) {
         for (let i = 0; i < books.length; i++) {
           const row = $("<li>");
-          const link = $("<a>");
+          const link = $("<a>").addClass('likes-book-link');
           row.addClass("list-group-item bookResult");
           link.attr("href", "https://books.google.com/books?id=" + books[i].title);
           link.attr("target", "_blank");
